@@ -1,22 +1,34 @@
 import css from './VoteStats.module.css';
 import type { Votes } from '../../types/votes.ts';
 
-interface Props {
+interface VoteStatsProps {
   votes: Votes;
   totalVotes: number;
   positiveRate: number;
 }
 
- function VoteStats({ votes, totalVotes, positiveRate }: Props) {
-  return (
+ function VoteStats({ votes, totalVotes, positiveRate }: VoteStatsProps) {
+	  return (
     <div className={css.container}>
-      {Object.entries(votes).map(([key, value]) => (
-        <p key={key} className={css.stat}>
-          {key[0].toUpperCase() + key.slice(1)}: <strong>{value}</strong>
-        </p>
-      ))}
-      <p className={css.stat}>Total: <strong>{totalVotes}</strong></p>
-      <p className={css.stat}>Positive: <strong>{positiveRate}%</strong></p>
+      <p className={css.stat}>
+        Good: <strong>{votes.good}</strong>
+      </p>
+
+      <p className={css.stat}>
+        Neutral: <strong>{votes.neutral}</strong>
+      </p>
+
+      <p className={css.stat}>
+        Bad: <strong>{votes.bad}</strong>
+      </p>
+
+      <p className={css.stat}>
+        Total: <strong>{totalVotes}</strong>
+      </p>
+
+      <p className={css.stat}>
+        Positive: <strong>{positiveRate}%</strong>
+      </p>
     </div>
   );
 }
